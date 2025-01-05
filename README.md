@@ -9,45 +9,45 @@ Easy provide pricing plans for Your Laravel 8.+ Application.
 
 <!-- MarkdownTOC depth="2" autolink="true" bracket="round" -->
 
-- [Main features](#main-features)
-- [TODO](#todo)
-- [Requirements](#requirements)
-- [Installation](#installation)
-    - [Composer](#composer)
-    - [Service Provider](#service-provider)
-    - [Config file and Migrations](#config-file-and-migrations)
-    - [Contract and Traits](#contract-and-traits)
-- [Config File](#config-file)
-- [Models](#models)
-    - [Feature model](#feature-model)
-    - [Plan model](#plan-model)
-    - [Group model](#group-model)
-    - [PlanFeature model](#planfeature-model)
-    - [PlanGroup model](#plangroup-model)
-    - [PlanSubscription model](#plansubscription-model)
-    - [PlanSubscriptionUsage model](#plansubscriptionusage-model)
-- [Events](#events)
-    - [SubscriptionRenewed event](#subscriptionrenewed-event)
-    - [SubscriptionCanceled event](#subscriptioncanceled-event)
-    - [SubscriptionPlanChanged event](#subscriptionplanchanged-event)
-- [Usage](#usage)
-    - [Create features and plan](#create-features-and-plan)
-    - [Create a group of plans](#create-a-group-of-plans)
-    - [Creating subscriptions](#creating-subscriptions)
-    - [Subscription Ability](#subscription-ability)
-    - [Record Feature Usage](#record-feature-usage)
-    - [Reduce Feature Usage](#reduce-feature-usage)
-    - [Clear The Subscription Usage Data](#clear-the-subscription-usage-data)
-    - [Check Subscription Status](#check-subscription-status)
-    - [Renew a Subscription](#renew-a-subscription)
-    - [Cancel a Subscription](#cancel-a-subscription)
-    - [Scopes](#scopes)
-- [Changelog](#changelog)
-- [Testing](#testing)
-- [Contributing](#contributing)
-- [Security](#security)
-- [Credits](#credits)
-- [License](#license)
+-   [Main features](#main-features)
+-   [TODO](#todo)
+-   [Requirements](#requirements)
+-   [Installation](#installation)
+    -   [Composer](#composer)
+    -   [Service Provider](#service-provider)
+    -   [Config file and Migrations](#config-file-and-migrations)
+    -   [Contract and Traits](#contract-and-traits)
+-   [Config File](#config-file)
+-   [Models](#models)
+    -   [Feature model](#feature-model)
+    -   [Plan model](#plan-model)
+    -   [Group model](#group-model)
+    -   [PlanFeature model](#planfeature-model)
+    -   [PlanGroup model](#plangroup-model)
+    -   [PlanSubscription model](#plansubscription-model)
+    -   [PlanSubscriptionUsage model](#plansubscriptionusage-model)
+-   [Events](#events)
+    -   [SubscriptionRenewed event](#subscriptionrenewed-event)
+    -   [SubscriptionCanceled event](#subscriptioncanceled-event)
+    -   [SubscriptionPlanChanged event](#subscriptionplanchanged-event)
+-   [Usage](#usage)
+    -   [Create features and plan](#create-features-and-plan)
+    -   [Create a group of plans](#create-a-group-of-plans)
+    -   [Creating subscriptions](#creating-subscriptions)
+    -   [Subscription Ability](#subscription-ability)
+    -   [Record Feature Usage](#record-feature-usage)
+    -   [Reduce Feature Usage](#reduce-feature-usage)
+    -   [Clear The Subscription Usage Data](#clear-the-subscription-usage-data)
+    -   [Check Subscription Status](#check-subscription-status)
+    -   [Renew a Subscription](#renew-a-subscription)
+    -   [Cancel a Subscription](#cancel-a-subscription)
+    -   [Scopes](#scopes)
+-   [Changelog](#changelog)
+-   [Testing](#testing)
+-   [Contributing](#contributing)
+-   [Security](#security)
+-   [Credits](#credits)
+-   [License](#license)
 
 <!-- /MarkdownTOC -->
 
@@ -57,14 +57,14 @@ Easy provide pricing plans for Your Laravel 8.+ Application.
 
 ## TODO
 
-- [ ] Caching some select query
-- [ ] Add unit test scripts
-- [ ] Make better documents
+-   [ ] Caching some select query
+-   [ ] Add unit test scripts
+-   [ ] Make better documents
 
 ## Requirements
 
-* php >=7.3
-* Laravel 8.+
+-   php >=7.3
+-   Laravel 8.+
 
 ## Installation
 
@@ -87,7 +87,7 @@ your `config/app.php` file.
     'providers' => [
         // Other service providers...
 
-        Laravel\PricingPlans\PricingPlansServiceProvider::class,
+        Veneridze\PricingPlans\PricingPlansServiceProvider::class,
     ],
 ```
 
@@ -96,7 +96,7 @@ your `config/app.php` file.
 Publish package config file and migrations with the command:
 
 ```bash
-$ php artisan vendor:publish --provider="Laravel\PricingPlans\PricingPlansServiceProvider"
+$ php artisan vendor:publish --provider="Veneridze\PricingPlans\PricingPlansServiceProvider"
 ```
 
 Then run migrations:
@@ -107,7 +107,7 @@ $ php artisan migrate
 
 ### Contract and Traits
 
-Add `Laravel\PricingPlans\Contacts\Subscriber` contract and `Laravel\PricingPlans\Models\Concerns\Subscribable` trait to
+Add `Veneridze\PricingPlans\Contacts\Subscriber` contract and `Veneridze\PricingPlans\Models\Concerns\Subscribable` trait to
 your subscriber model (Eg. `User`).
 
 See the following example:
@@ -118,8 +118,8 @@ See the following example:
 namespace App\Models;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Laravel\PricingPlans\Contracts\Subscriber;
-use Laravel\PricingPlans\Models\Concerns\Subscribable;
+use Veneridze\PricingPlans\Contracts\Subscriber;
+use Veneridze\PricingPlans\Models\Concerns\Subscribable;
 
 class User extends Authenticatable implements Subscriber
 {
@@ -134,14 +134,14 @@ You can configure what database tables, what models to use, list of positive wor
 
 Definitions:
 
-- **Positive Words**: Are used to tell if a particular feature is _enabled_. E.g., if the feature `listing_title_bold`
-  has the value `Y` (_Y_ is one of the positive words) then, that means it's enabled.
+-   **Positive Words**: Are used to tell if a particular feature is _enabled_. E.g., if the feature `listing_title_bold`
+    has the value `Y` (_Y_ is one of the positive words) then, that means it's enabled.
 
 Take a look to the `config/plans.php` config file for more details.
 
 ## Models
 
-PricingPlans uses 7 models under namespace `Laravel\PricingPlans\Models`. You can change to using extended classes of it
+PricingPlans uses 7 models under namespace `Veneridze\PricingPlans\Models`. You can change to using extended classes of it
 by changing models class in config file:
 
 ### Feature model
@@ -153,7 +153,7 @@ This model is model object of feature
 
 namespace App\Models;
 
-use Laravel\PricingPlans\Models\Feature as Model;
+use Veneridze\PricingPlans\Models\Feature as Model;
 
 class Feature extends Model
 {
@@ -170,7 +170,7 @@ This model is model object of plan
 <?php
 namespace App\Models;
 
-use Laravel\PricingPlans\Models\Plan as Model;
+use Veneridze\PricingPlans\Models\Plan as Model;
 
 class Plan extends Model
 {
@@ -187,11 +187,11 @@ This model is model object of group
 <?php
 namespace App\Models;
 
-use Laravel\PricingPlans\Models\Group as Model;
+use Veneridze\PricingPlans\Models\Group as Model;
 
 class Group extends Model
 {
-   
+
 }
 ```
 
@@ -211,11 +211,11 @@ This model is relation model object between plan and subscriber
 
 This model is object for counting usage feature
 
-For more details take a look to each model and the `Laravel\PricingPlans\Models\Concerns\Subscribable` trait.
+For more details take a look to each model and the `Veneridze\PricingPlans\Models\Concerns\Subscribable` trait.
 
 ## Events
 
-Events are under the namespace `Laravel\PricingPlans\Events`. The following are the events triggered by the package.
+Events are under the namespace `Veneridze\PricingPlans\Events`. The following are the events triggered by the package.
 
 ### `SubscriptionRenewed` event
 
@@ -237,8 +237,8 @@ change is determine by comparing the original and current value of `plan_id`.
 ```php
 <?php
 
-use Laravel\PricingPlans\Models\Feature;
-use Laravel\PricingPlans\Models\Plan;
+use Veneridze\PricingPlans\Models\Feature;
+use Veneridze\PricingPlans\Models\Plan;
 
 $feature1 = Feature::create([
     'name' => 'Upload images',
@@ -280,8 +280,8 @@ $plan->features()->attach([
 ```php
 <?php
 
-use Laravel\PricingPlans\Models\Group;
-use Laravel\PricingPlans\Models\Plan;
+use Veneridze\PricingPlans\Models\Group;
+use Veneridze\PricingPlans\Models\Plan;
 
 $plan1 = Plan::create([
     'name' => 'Pro',
@@ -327,7 +327,7 @@ to create the model's subscription.
 <?php
 
 use Illuminate\Support\Facades\Auth;
-use Laravel\PricingPlans\Models\Plan;
+use Veneridze\PricingPlans\Models\Plan;
 
 $user = Auth::user();
 $plan = Plan::code(Plan::PLAN_PRO)->firstOrFail();
@@ -339,8 +339,8 @@ The first argument passed to `newSubscription` method should be the name of the 
 a single subscription, you might call this `main` or `primary`. The second argument is the plan instance your user is
 subscribing to.
 
-<!-- ~~If both plans (current and new plan) have the same billing frequency (e.g., ` interval_unit` and `interval_count`) the subscription 
-will retain the same billing dates. If the plans don't have the same billing frequency, the subscription will have the new plan billing frequency, 
+<!-- ~~If both plans (current and new plan) have the same billing frequency (e.g., ` interval_unit` and `interval_count`) the subscription
+will retain the same billing dates. If the plans don't have the same billing frequency, the subscription will have the new plan billing frequency,
 starting on the day of the change and _the subscription usage data will be cleared_.~~ -->
 
 <!-- ~~If the new plan have a trial period and it's a new subscription, the trial period will be applied.~~ -->
@@ -352,9 +352,9 @@ common one is `canUse`:
 
 The `canUse` method returns `true` or `false` depending on multiple factors:
 
-- Feature _is enabled_.
-- Feature value isn't `0`.
-- Or feature has remaining uses available.
+-   Feature _is enabled_.
+-   Feature value isn't `0`.
+-   Or feature has remaining uses available.
 
 ```php
 $user->subscription('main')->ability()->canUse(Feature::FEATURE_UPLOAD_IMAGES);
@@ -362,12 +362,12 @@ $user->subscription('main')->ability()->canUse(Feature::FEATURE_UPLOAD_IMAGES);
 
 Other methods are:
 
-- `enabled`: returns `true` when the value of the feature is a _positive word_ listed in the config file.
-- `consumed`: returns how many times the user has used a particular feature.
-- `remainings`: returns available uses for a particular feature.
-- `value`: returns the feature value.
+-   `enabled`: returns `true` when the value of the feature is a _positive word_ listed in the config file.
+-   `consumed`: returns how many times the user has used a particular feature.
+-   `remainings`: returns available uses for a particular feature.
+-   `value`: returns the feature value.
 
-> All methods share the same signature: e.g.    
+> All methods share the same signature: e.g.  
 > `$user->subscription('main')->ability()->consumed(Feature::FEATURE_UPLOAD_IMAGES);`.
 
 ### Record Feature Usage
@@ -412,8 +412,8 @@ $user->subscriptionUsage('main')->clear();
 
 For a subscription to be considered active _one of the following must be `true`_:
 
-- Subscription has an active trial.
-- Subscription `ends_at` is in the future.
+-   Subscription has an active trial.
+-   Subscription `ends_at` is in the future.
 
 ```php
 $user->subscribed('main');
@@ -465,7 +465,7 @@ $user->subscription('main')->cancel(true);
 ```php
 <?php
 
-use Laravel\PricingPlans\Models\PlanSubscription;
+use Veneridze\PricingPlans\Models\PlanSubscription;
 
 // Get subscriptions by plan:
 $subscriptions = PlanSubscription::byPlan($plan_id)->get();
@@ -513,11 +513,11 @@ the issue tracker.
 I forked and recreated this project from [gerardojbaez/laraplans](https://github.com/gerardojbaez/laraplans) project in
 mid-2017. Thank [Gerardo Baez](https://github.com/gerardojbaez)
 
-- [Oanh Nguyen](https://github.com/oanhnn)
-- [Gerardo Baez](https://github.com/gerardojbaez)
-- [All Contributors](../../contributors)
+-   [Oanh Nguyen](https://github.com/oanhnn)
+-   [Gerardo Baez](https://github.com/gerardojbaez)
+-   [All Contributors](../../contributors)
 
 ## License
 
-This project is released under the MIT License.   
+This project is released under the MIT License.  
 Copyright © 2017-2018 [Oanh Nguyen](https://oanhnn.github.io/).

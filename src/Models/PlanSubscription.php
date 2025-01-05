@@ -1,42 +1,45 @@
 <?php
 
-namespace Laravel\PricingPlans\Models;
+namespace Veneridze\PricingPlans\Models;
 
-use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Event;
 use InvalidArgumentException;
-use Laravel\PricingPlans\Events\SubscriptionRenewed;
-use Laravel\PricingPlans\Events\SubscriptionCanceled;
-use Laravel\PricingPlans\Period;
-use Laravel\PricingPlans\SubscriptionAbility;
-use Laravel\PricingPlans\SubscriptionUsageManager;
-use Laravel\PricingPlans\Models\Concerns\BelongsToPlanModel;
+use Veneridze\PricingPlans\Events\SubscriptionRenewed;
+use Veneridze\PricingPlans\Events\SubscriptionCanceled;
+use Veneridze\PricingPlans\Events\SubscriptionPlanChanged;
+use Veneridze\PricingPlans\Period;
+use Veneridze\PricingPlans\SubscriptionAbility;
+use Veneridze\PricingPlans\SubscriptionUsageManager;
+use Veneridze\PricingPlans\Models\Concerns\BelongsToPlanModel;
 use LogicException;
 
 /**
  * Class PlanSubscription
- * @package Laravel\PricingPlans\Models
+ * @package Veneridze\PricingPlans\Models
  * @property int $id
  * @property string $subscriber_type
  * @property int $subscriber_id
  * @property int $plan_id
  * @property string $name
  * @property bool $canceled_immediately
- * @property \Carbon\Carbon $starts_at
- * @property \Carbon\Carbon $ends_at
- * @property \Carbon\Carbon $canceled_at
- * @property \Carbon\Carbon $trial_ends_at
- * @property \Carbon\Carbon $created_at
- * @property \Carbon\Carbon $updated_at
- * @property-read \Laravel\PricingPlans\Models\Plan $plan
+ * @property \Illuminate\Support\Carbon $starts_at
+ * @property \Illuminate\Support\Carbon $ends_at
+ * @property \Illuminate\Support\Carbon $canceled_at
+ * @property \Illuminate\Support\Carbon $trial_ends_at
+ * @property \Illuminate\Support\Carbon $created_at
+ * @property \Illuminate\Support\Carbon $updated_at
+ * @property-read \Veneridze\PricingPlans\Models\Plan $plan
  */
 class PlanSubscription extends Model
 {
     use BelongsToPlanModel;
+    use HasFactory;
 
     /**
      * Subscription statuses
@@ -81,7 +84,7 @@ class PlanSubscription extends Model
     /**
      * Subscription Ability Manager instance.
      *
-     * @var \Laravel\PricingPlans\SubscriptionAbility
+     * @var \Veneridze\PricingPlans\SubscriptionAbility
      */
     protected $ability;
 
@@ -150,7 +153,7 @@ class PlanSubscription extends Model
      *
      * @return string
      */
-    public function getStatusAttribute()
+    public function getStatusAttribute(): string|null
     {
         if ($this->isActive()) {
             return self::STATUS_ACTIVE;
@@ -163,6 +166,7 @@ class PlanSubscription extends Model
         if ($this->isEnded()) {
             return self::STATUS_ENDED;
         }
+        return null;
     }
 
     /**
@@ -251,7 +255,7 @@ class PlanSubscription extends Model
     /**
      * Change subscription plan.
      *
-     * @param int|\Laravel\PricingPlans\Models\Plan $plan Plan Id or Plan Model Instance
+     * @param int|\Veneridze\PricingPlans\Models\Plan $plan Plan Id or Plan Model Instance
      * @return PlanSubscription|false
      * @throws InvalidArgumentException
      */
@@ -329,7 +333,7 @@ class PlanSubscription extends Model
     /**
      * Get Subscription Ability instance.
      *
-     * @return \Laravel\PricingPlans\SubscriptionAbility
+     * @return \Veneridze\PricingPlans\SubscriptionAbility
      */
     public function ability()
     {
@@ -344,12 +348,12 @@ class PlanSubscription extends Model
      * Find by user id.
      *
      * @param  \Illuminate\Database\Eloquent\Builder
-     * @param  \Laravel\PricingPlans\Contracts\Subscriber $subscriber
+     * @param  \Veneridze\PricingPlans\Contracts\Subscriber $subscriber
      * @return \Illuminate\Database\Eloquent\Builder
      */
     public function scopeBySubscriber($query, $subscriber)
     {
-        return $query->where('subscriber_id', $subscriber->getKey())
+        return $query->where('subscriber_id', $subscriber->id)
             ->where('subscriber_type', get_class($subscriber));
     }
 

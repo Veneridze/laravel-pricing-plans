@@ -1,15 +1,15 @@
 <?php
 
-namespace Laravel\PricingPlans\Tests\Integration\Models;
+namespace Veneridze\PricingPlans\Tests\Integration\Models;
 
-use Laravel\PricingPlans\Models\Feature;
-use Laravel\PricingPlans\Models\Group;
-use Laravel\PricingPlans\Models\Plan;
-use Laravel\PricingPlans\Tests\TestCase;
+use Veneridze\PricingPlans\Models\Feature;
+use Veneridze\PricingPlans\Models\Group;
+use Veneridze\PricingPlans\Models\Plan;
+use Veneridze\PricingPlans\Tests\TestCase;
 
 /**
  * Class GroupTest
- * @package Laravel\PricingPlans\Integration\Models
+ * @package Veneridze\PricingPlans\Integration\Models
  */
 class GroupTest extends TestCase
 {
@@ -18,7 +18,7 @@ class GroupTest extends TestCase
      */
     public function testICanCreateAGroup()
     {
-        /** @var \Laravel\PricingPlans\Models\Group $group */
+        /** @var \Veneridze\PricingPlans\Models\Group $group */
         Group::create([
             'name' => 'service1'
         ]);
@@ -30,13 +30,13 @@ class GroupTest extends TestCase
      */
     public function testItCanCreateAGroupAndAttachPlans()
     {
-        /** @var \Laravel\PricingPlans\Models\Group $group */
+        /** @var \Veneridze\PricingPlans\Models\Group $group */
         $group = Group::create([
             'name' => "service1",
             'description' => "Service1 group"
         ]);
 
-        /** @var \Laravel\PricingPlans\Models\Plan $plan */
+        /** @var \Veneridze\PricingPlans\Models\Plan $plan */
         $plan = Plan::create([
             'name' => 'Pro',
             'code' => 'pro',

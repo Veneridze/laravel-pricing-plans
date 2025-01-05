@@ -1,23 +1,23 @@
 <?php
 
-namespace Laravel\PricingPlans;
+namespace Veneridze\PricingPlans;
 
 use Illuminate\Support\Facades\Config;
-use Laravel\PricingPlans\Models\PlanSubscription;
+use Veneridze\PricingPlans\Models\PlanSubscription;
 
 class SubscriptionAbility
 {
     /**
      * Subscription model instance.
      *
-     * @var \Laravel\PricingPlans\Models\PlanSubscription
+     * @var \Veneridze\PricingPlans\Models\PlanSubscription
      */
     protected $subscription;
 
     /**
      * Create a new Subscription instance.
      *
-     * @param \Laravel\PricingPlans\Models\PlanSubscription $subscription
+     * @param \Veneridze\PricingPlans\Models\PlanSubscription $subscription
      */
     public function __construct(PlanSubscription $subscription)
     {
@@ -64,7 +64,7 @@ class SubscriptionAbility
      */
     public function consumed(string $featureCode): int
     {
-        /** @var \Laravel\PricingPlans\Models\PlanSubscriptionUsage $usage */
+        /** @var \Veneridze\PricingPlans\Models\PlanSubscriptionUsage $usage */
         foreach ($this->subscription->usage as $usage) {
             if ($usage->feature_code === $featureCode && !$usage->isExpired()) {
                 return (int) $usage->used;
@@ -121,7 +121,7 @@ class SubscriptionAbility
             $this->subscription->plan->features()->getEager();
         }
 
-        /** @var \Laravel\PricingPlans\Models\Feature $feature */
+        /** @var \Veneridze\PricingPlans\Models\Feature $feature */
         foreach ($this->subscription->plan->features as $feature) {
             if ($featureCode === $feature->code) {
                 return $feature->pivot->value;

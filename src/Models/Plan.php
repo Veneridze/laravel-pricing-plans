@@ -1,17 +1,18 @@
 <?php
 
-namespace Laravel\PricingPlans\Models;
+namespace Veneridze\PricingPlans\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Lang;
-use Laravel\PricingPlans\Models\Concerns\HasCode;
-use Laravel\PricingPlans\Models\Concerns\Resettable;
-use Laravel\PricingPlans\Period;
+use Veneridze\PricingPlans\Period;
+use Veneridze\PricingPlans\Traits\HasCode;
+use Veneridze\PricingPlans\Traits\Resettable;
 
 /**
  * Class Plan
- * @package Laravel\PricingPlans\Models
+ * @package Veneridze\PricingPlans\Models
  * @property int $id
  * @property string $name
  * @property string $description
@@ -20,13 +21,14 @@ use Laravel\PricingPlans\Period;
  * @property int $interval_count
  * @property int $trial_period_days
  * @property int $sort_order
- * @property \Carbon\Carbon $created_at
- * @property \Carbon\Carbon $updated_at
+ * @property \Illuminate\Support\Carbon $created_at
+ * @property \Illuminate\Support\Carbon $updated_at
  */
 class Plan extends Model
 {
     use Resettable;
     use HasCode;
+    use HasFactory;
 
     /**
      * The attributes that are mass assignable.

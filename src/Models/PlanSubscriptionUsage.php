@@ -1,21 +1,21 @@
 <?php
 
-namespace Laravel\PricingPlans\Models;
+namespace Veneridze\PricingPlans\Models;
 
-use Carbon\Carbon;
+use Illuminate\Support\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Config;
 
 /**
  * Class PlanSubscriptionUsage
- * @package Laravel\PricingPlans\Models
+ * @package Veneridze\PricingPlans\Models
  * @property int $id
  * @property int $subscription_id
  * @property string $feature_code
  * @property int $used
- * @property \Carbon\Carbon $valid_until
- * @property \Carbon\Carbon $created_at
- * @property \Carbon\Carbon $updated_at
+ * @property \Illuminate\Support\Carbon $valid_until
+ * @property \Illuminate\Support\Carbon $created_at
+ * @property \Illuminate\Support\Carbon $updated_at
  */
 class PlanSubscriptionUsage extends Model
 {
@@ -85,7 +85,7 @@ class PlanSubscriptionUsage extends Model
      * Scope by feature code.
      *
      * @param \Illuminate\Database\Eloquent\Builder $query
-     * @param string|\Laravel\PricingPlans\Models\Feature $feature
+     * @param string|\Veneridze\PricingPlans\Models\Feature $feature
      * @return \Illuminate\Database\Eloquent\Builder
      */
     public function scopeByFeature($query, $feature)

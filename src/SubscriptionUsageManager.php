@@ -1,23 +1,23 @@
 <?php
 
-namespace Laravel\PricingPlans;
+namespace Veneridze\PricingPlans;
 
-use Laravel\PricingPlans\Models\Feature;
-use Laravel\PricingPlans\Models\PlanSubscription;
+use Veneridze\PricingPlans\Models\Feature;
+use Veneridze\PricingPlans\Models\PlanSubscription;
 
 class SubscriptionUsageManager
 {
     /**
      * Subscription model instance.
      *
-     * @var \Laravel\PricingPlans\Models\PlanSubscription
+     * @var \Veneridze\PricingPlans\Models\PlanSubscription
      */
     protected $subscription;
 
     /**
      * Create new Subscription Usage Manager instance.
      *
-     * @param \Laravel\PricingPlans\Models\PlanSubscription $subscription
+     * @param \Veneridze\PricingPlans\Models\PlanSubscription $subscription
      */
     public function __construct(PlanSubscription $subscription)
     {
@@ -32,12 +32,12 @@ class SubscriptionUsageManager
      * @param string $featureCode
      * @param int $uses
      * @param bool $incremental
-     * @return \Laravel\PricingPlans\Models\PlanSubscriptionUsage
+     * @return \Veneridze\PricingPlans\Models\PlanSubscriptionUsage
      * @throws \Throwable
      */
     public function record(string $featureCode, $uses = 1, $incremental = true)
     {
-        /** @var \Laravel\PricingPlans\Models\Feature $feature */
+        /** @var \Veneridze\PricingPlans\Models\Feature $feature */
         $feature = Feature::code($featureCode)->first();
 
         $usage = $this->subscription->usage()->firstOrNew([
@@ -70,7 +70,7 @@ class SubscriptionUsageManager
      *
      * @param int $featureId
      * @param int $uses
-     * @return \Laravel\PricingPlans\Models\PlanSubscriptionUsage
+     * @return \Veneridze\PricingPlans\Models\PlanSubscriptionUsage
      * @throws \Throwable
      */
     public function reduce($featureId, $uses = 1)

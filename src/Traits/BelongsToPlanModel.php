@@ -1,6 +1,6 @@
 <?php
 
-namespace Laravel\PricingPlans\Models\Concerns;
+namespace Veneridze\PricingPlans\Models\Concerns;
 
 use Illuminate\Support\Facades\Config;
 

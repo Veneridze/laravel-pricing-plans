@@ -1,8 +1,8 @@
 <?php
 
-namespace Laravel\PricingPlans;
+namespace Veneridze\PricingPlans;
 
-use Carbon\Carbon;
+use Illuminate\Support\Carbon;
 use DateTime;
 use Illuminate\Support\Facades\Lang;
 use InvalidArgumentException;
@@ -32,14 +32,14 @@ class Period
     /**
      * Starting date of the period.
      *
-     * @var \Carbon\Carbon
+     * @var \Illuminate\Support\Carbon
      */
     protected $startAt;
 
     /**
      * Ending date of the period.
      *
-     * @var \Carbon\Carbon
+     * @var \Illuminate\Support\Carbon
      */
     protected $endAt;
 
@@ -93,7 +93,7 @@ class Period
     /**
      * Get start date.
      *
-     * @return \Carbon\Carbon
+     * @return \Illuminate\Support\Carbon
      */
     public function getStartAt()
     {
@@ -103,7 +103,7 @@ class Period
     /**
      * Get end date.
      *
-     * @return \Carbon\Carbon
+     * @return \Illuminate\Support\Carbon
      */
     public function getEndAt()
     {

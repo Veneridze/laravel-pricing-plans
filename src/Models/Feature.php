@@ -1,26 +1,28 @@
 <?php
 
-namespace Laravel\PricingPlans\Models;
+namespace Veneridze\PricingPlans\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Config;
-use Laravel\PricingPlans\Models\Concerns\HasCode;
-use Laravel\PricingPlans\Models\Concerns\Resettable;
+use Veneridze\PricingPlans\Traits\HasCode;
+use Veneridze\PricingPlans\Traits\Resettable;
 
 /**
  * Class Feature
- * @package Laravel\PricingPlans\Models
+ * @package Veneridze\PricingPlans\Models
  * @property int $id
  * @property string $name
  * @property string $description
  * @property int $sort_order
- * @property \Carbon\Carbon $created_at
- * @property \Carbon\Carbon $updated_at
+ * @property \Illuminate\Support\Carbon $created_at
+ * @property \Illuminate\Support\Carbon $updated_at
  */
 class Feature extends Model
 {
     use Resettable;
     use HasCode;
+    use HasFactory;
 
     /**
      * @var string

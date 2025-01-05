@@ -1,5 +1,5 @@
 {
-  "name": "cityhunter/laravel-pricing-plans",
+  "name": "veneridze/laravel-pricing-plans",
   "type": "library",
   "description": "A package provide pricing plans for Laravel.",
   "keywords": [
@@ -9,36 +9,38 @@
     "pricing"
   ],
   "license": "MIT",
-  "homepage": "https://github.com/henoc35/laravel-pricing-plans",
+  "homepage": "https://github.com/veneridze/laravel-pricing-plans",
   "support": {
-    "issues": "https://github.com/henoc35/laravel-pricing-plans/issues",
-    "source": "https://github.com/henoc35/laravel-pricing-plans"
+    "issues": "https://github.com/veneridze/laravel-pricing-plans/issues",
+    "source": "https://github.com/veneridze/laravel-pricing-plans"
   },
   "authors": [
     {
       "name": "Oanh Nguyen",
       "email": "oanhnn.bk@gmail.com"
+    },
+    {
+      "name": "Veneridze",
+      "email": "viacheslav.kopaev@yandex.ru"
     }
   ],
   "autoload": {
     "psr-4": {
-      "Laravel\\PricingPlans\\": "src/"
+      "Veneridze\\PricingPlans\\": "src/"
     }
   },
   "require": {
     "php": ">=7.3|^8.0",
     "ext-json": "*",
-    "illuminate/database": "^8.0",
-    "illuminate/support": "^8.0",
-    "nesbot/carbon": "^2.43.0"
+    "laravel/framework": "^10.0|^11.0",
+    "illuminate/database": "^10.0|^11.0",
+    "illuminate/support": "^10.0|^11.0",
+    "spatie/laravel-package-tools": "^1.18"
   },
   "require-dev": {
     "fakerphp/faker": "^1.13",
     "mockery/mockery": "^1.4.2",
-    "orchestra/database": "6.x-dev",
-    "orchestra/testbench": "^6.7",
     "php-parallel-lint/php-parallel-lint": "^1.2",
-    "phpro/grumphp": "^1.3",
     "phpunit/phpunit": "^9.5",
     "squizlabs/php_codesniffer": "^3.5"
   },
@@ -50,15 +52,14 @@
   "config": {
     "preferred-install": "dist",
     "sort-packages": true,
-    "optimize-autoloader": true
+    "optimize-autoloader": false
   },
   "extra": {
     "laravel": {
       "providers": [
-        "Laravel\\PricingPlans\\PricingPlansServiceProvider"
+        "Veneridze\\PricingPlans\\PricingPlansServiceProvider"
       ],
-      "aliases": {
-      }
+      "aliases": {}
     }
   }
 }

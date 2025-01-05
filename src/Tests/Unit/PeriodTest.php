@@ -1,19 +1,19 @@
 <?php
 
-namespace Laravel\PricingPlans\Tests\Unit;
+namespace Veneridze\PricingPlans\Tests\Unit;
 
-use Carbon\Carbon;
+use Illuminate\Support\Carbon;
 use Closure;
 use DateInterval;
 use DateTime;
 use Illuminate\Support\Facades\App;
 use InvalidArgumentException;
-use Laravel\PricingPlans\Period;
-use Laravel\PricingPlans\Tests\TestCase;
+use Veneridze\PricingPlans\Period;
+use Veneridze\PricingPlans\Tests\TestCase;
 
 /**
  * Class PeriodTest
- * @package Laravel\PricingPlans\Unit
+ * @package Veneridze\PricingPlans\Unit
  */
 class PeriodTest extends TestCase
 {
@@ -61,18 +61,18 @@ class PeriodTest extends TestCase
 
         return [
             // [ $unit, $count, $startAt, $expectedStartAt, $expectedEndAt],
-            ['day',   1, $st1,                 $st1, (clone $st1)->add(new DateInterval('P1D')) ],
-            ['day',   2, $st2->getTimestamp(), $st2, (clone $st2)->add(new DateInterval('P2D')) ],
-            ['day',   3, $st3->format('c'),    $st3, (clone $st3)->add(new DateInterval('P3D')) ],
+            ['day',   1, $st1,                 $st1, (clone $st1)->add(new DateInterval('P1D'))],
+            ['day',   2, $st2->getTimestamp(), $st2, (clone $st2)->add(new DateInterval('P2D'))],
+            ['day',   3, $st3->format('c'),    $st3, (clone $st3)->add(new DateInterval('P3D'))],
             ['week',  1, $st1,                 $st1, (clone $st1)->add(new DateInterval('P7D'))],
             ['week',  2, $st2->getTimestamp(), $st2, (clone $st2)->add(new DateInterval('P14D'))],
             ['week',  3, $st3->format('c'),    $st3, (clone $st3)->add(new DateInterval('P21D'))],
-            ['month', 1, $st1,                 $st1, (clone $st1)->add(new DateInterval('P1M')) ],
-            ['month', 2, $st2->getTimestamp(), $st2, (clone $st2)->add(new DateInterval('P2M')) ],
-            ['month', 3, $st3->format('c'),    $st3, (clone $st3)->add(new DateInterval('P3M')) ],
-            ['year',  1, $st1,                 $st1, (clone $st1)->add(new DateInterval('P1Y')) ],
-            ['year',  2, $st2->getTimestamp(), $st2, (clone $st2)->add(new DateInterval('P2Y')) ],
-            ['year',  3, $st3->format('c'),    $st3, (clone $st3)->add(new DateInterval('P3Y')) ],
+            ['month', 1, $st1,                 $st1, (clone $st1)->add(new DateInterval('P1M'))],
+            ['month', 2, $st2->getTimestamp(), $st2, (clone $st2)->add(new DateInterval('P2M'))],
+            ['month', 3, $st3->format('c'),    $st3, (clone $st3)->add(new DateInterval('P3M'))],
+            ['year',  1, $st1,                 $st1, (clone $st1)->add(new DateInterval('P1Y'))],
+            ['year',  2, $st2->getTimestamp(), $st2, (clone $st2)->add(new DateInterval('P2Y'))],
+            ['year',  3, $st3->format('c'),    $st3, (clone $st3)->add(new DateInterval('P3Y'))],
         ];
     }
 

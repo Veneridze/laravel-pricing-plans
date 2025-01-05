@@ -1,20 +1,21 @@
 <?php
 
-namespace Laravel\PricingPlans\Models;
+namespace Veneridze\PricingPlans\Models;
 
 use Illuminate\Database\Eloquent\Relations\Pivot;
-use Laravel\PricingPlans\Models\Concerns\BelongsToPlanModel;
+use Illuminate\Support\Facades\Config;
+use Veneridze\PricingPlans\Models\Concerns\BelongsToPlanModel;
 
 /**
  * Class PlanFeature
- * @package Laravel\PricingPlans\Models
+ * @package Veneridze\PricingPlans\Models
  * @property int $id
  * @property int $plan_id
  * @property int $feature_id
  * @property int|string $value
  * @property string $note
- * @property \Carbon\Carbon $created_at
- * @property \Carbon\Carbon $updated_at
+ * @property \Illuminate\Support\Carbon $created_at
+ * @property \Illuminate\Support\Carbon $updated_at
  */
 class PlanFeature extends Pivot
 {

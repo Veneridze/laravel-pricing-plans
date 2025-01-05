@@ -1,8 +1,8 @@
 <?php
 
 use Faker\Generator;
-use Laravel\PricingPlans\Models\Feature;
-use Laravel\PricingPlans\Period;
+use Veneridze\PricingPlans\Models\Feature;
+use Veneridze\PricingPlans\Period;
 
 $factory->define(Feature::class, function (Generator $faker) {
     return [

@@ -1,8 +1,8 @@
 <?php
 
-namespace Laravel\PricingPlans\Models;
+namespace Veneridze\PricingPlans\Models;
 
-use Carbon\Carbon;
+use Illuminate\Support\Carbon;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Support\Facades\App;
@@ -11,19 +11,19 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Event;
 use InvalidArgumentException;
-use Laravel\PricingPlans\Events\SubscriptionRenewed;
-use Laravel\PricingPlans\Period;
-use Laravel\PricingPlans\SubscriptionAbility;
-use Laravel\PricingPlans\SubscriptionUsageManager;
-use Laravel\PricingPlans\Models\Concerns\BelongsToPlanModel;
+use Veneridze\PricingPlans\Events\SubscriptionRenewed;
+use Veneridze\PricingPlans\Period;
+use Veneridze\PricingPlans\SubscriptionAbility;
+use Veneridze\PricingPlans\SubscriptionUsageManager;
+use Veneridze\PricingPlans\Models\Concerns\BelongsToPlanModel;
 use LogicException;
 
 /**
  * Class Group
- * @package Laravel\PricingPlans\Models
+ * @package Veneridze\PricingPlans\Models
  * @property int $group_id
  * @property int $plan_id
- * @property \Carbon\Carbon $created_at
+ * @property \Illuminate\Support\Carbon $created_at
  */
 class PlanGroup extends Model
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace Laravel\PricingPlans\Models\Concerns;
+namespace Veneridze\PricingPlans\Traits;
 
 use Illuminate\Database\Eloquent\Builder;
 

@@ -1,9 +1,9 @@
 <?php
 
-namespace Laravel\PricingPlans\Models\Concerns;
+namespace Veneridze\PricingPlans\Traits;
 
 use Illuminate\Support\Facades\Lang;
-use Laravel\PricingPlans\Period;
+use Veneridze\PricingPlans\Period;
 
 trait Resettable
 {
@@ -39,7 +39,7 @@ trait Resettable
 
     /**
      * @param string|null|int|\DateTime $startedAt
-     * @return \Carbon\Carbon
+     * @return \Illuminate\Support\Carbon
      */
     public function getResetTime($startedAt = null)
     {

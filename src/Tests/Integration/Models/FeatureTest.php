@@ -1,15 +1,15 @@
 <?php
 
-namespace Laravel\PricingPlans\Tests\Integration\Models;
+namespace Veneridze\PricingPlans\Tests\Integration\Models;
 
-use Carbon\Carbon;
+use Illuminate\Support\Carbon;
 use DateInterval;
-use Laravel\PricingPlans\Models\Feature;
-use Laravel\PricingPlans\Tests\TestCase;
+use Veneridze\PricingPlans\Models\Feature;
+use Veneridze\PricingPlans\Tests\TestCase;
 
 /**
  * Class FeatureTest
- * @package Laravel\PricingPlans\Integration\Models
+ * @package Veneridze\PricingPlans\Integration\Models
  */
 class FeatureTest extends TestCase
 {
@@ -18,7 +18,7 @@ class FeatureTest extends TestCase
      */
     public function testItCanCreateAFeature()
     {
-        /** @var \Laravel\PricingPlans\Models\Feature $feature1 */
+        /** @var \Veneridze\PricingPlans\Models\Feature $feature1 */
         $feature1 = Feature::create([
             'name' => 'Upload images',
             'code' => 'upload-images',
@@ -28,7 +28,7 @@ class FeatureTest extends TestCase
             'sort_order' => 1,
         ]);
 
-        /** @var \Laravel\PricingPlans\Models\Feature $feature2 */
+        /** @var \Veneridze\PricingPlans\Models\Feature $feature2 */
         $feature2 = Feature::create([
             'name' => 'Upload video',
             'code' => 'upload-video',
@@ -38,7 +38,7 @@ class FeatureTest extends TestCase
             'sort_order' => 2,
         ]);
 
-        /** @var \Laravel\PricingPlans\Models\Feature $feature3 */
+        /** @var \Veneridze\PricingPlans\Models\Feature $feature3 */
         $feature3 = Feature::create([
             'name' => 'Comment',
             'code' => 'comment',
@@ -64,7 +64,7 @@ class FeatureTest extends TestCase
         $now = Carbon::now();
         Carbon::setTestNow($now);
 
-        /** @var \Laravel\PricingPlans\Models\Feature $feature1 */
+        /** @var \Veneridze\PricingPlans\Models\Feature $feature1 */
         $feature1 = Feature::create([
             'name' => 'Upload images',
             'code' => 'upload-images',

@@ -1,14 +1,16 @@
 <?php
 
-namespace Laravel\PricingPlans\Tests\Models;
+namespace Veneridze\PricingPlans\Tests\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Laravel\PricingPlans\Contracts\Subscriber;
-use Laravel\PricingPlans\Models\Concerns\Subscribable;
+use Veneridze\PricingPlans\Contracts\Subscriber;
+use Veneridze\PricingPlans\Traits\Subscribable;
 
 class User extends Model implements Subscriber
 {
     use Subscribable;
+    use HasFactory;
 
     /**
      * The attributes that are mass assignable.
@@ -16,7 +18,9 @@ class User extends Model implements Subscriber
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name',
+        'email',
+        'password',
     ];
 
     /**
@@ -25,6 +29,7 @@ class User extends Model implements Subscriber
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'password',
+        'remember_token',
     ];
 }

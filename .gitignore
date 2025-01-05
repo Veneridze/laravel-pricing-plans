@@ -4,6 +4,7 @@
 /phpunit.xml
 /phpcs.xml
 /vendor
+/.phpunit.result.cache
 /build
 
 # IDE and editor specific files #

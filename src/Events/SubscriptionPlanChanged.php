@@ -1,8 +1,8 @@
 <?php
 
-namespace Laravel\PricingPlans\Events;
+namespace Veneridze\PricingPlans\Events;
 
-use Laravel\PricingPlans\Models\PlanSubscription;
+use Veneridze\PricingPlans\Models\PlanSubscription;
 
 class SubscriptionPlanChanged
 {
@@ -14,7 +14,7 @@ class SubscriptionPlanChanged
     /**
      * Create a new event instance.
      *
-     * @param  \Laravel\PricingPlans\Models\PlanSubscription $subscription
+     * @param  \Veneridze\PricingPlans\Models\PlanSubscription $subscription
      */
     public function __construct(PlanSubscription $subscription)
     {

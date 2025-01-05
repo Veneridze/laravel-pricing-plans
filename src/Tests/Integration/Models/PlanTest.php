@@ -1,14 +1,14 @@
 <?php
 
-namespace Laravel\PricingPlans\Tests\Integration\Models;
+namespace Veneridze\PricingPlans\Tests\Integration\Models;
 
-use Laravel\PricingPlans\Models\Feature;
-use Laravel\PricingPlans\Models\Plan;
-use Laravel\PricingPlans\Tests\TestCase;
+use Veneridze\PricingPlans\Models\Feature;
+use Veneridze\PricingPlans\Models\Plan;
+use Veneridze\PricingPlans\Tests\TestCase;
 
 /**
  * Class PlanTest
- * @package Laravel\PricingPlans\Integration\Models
+ * @package Veneridze\PricingPlans\Integration\Models
  */
 class PlanTest extends TestCase
 {
@@ -17,7 +17,7 @@ class PlanTest extends TestCase
      */
     public function testItCanCreateAPlanAndAttachFeatures()
     {
-        /** @var \Laravel\PricingPlans\Models\Plan $plan */
+        /** @var \Veneridze\PricingPlans\Models\Plan $plan */
         $plan = Plan::create([
             'name' => 'Pro',
             'code' => 'pro',

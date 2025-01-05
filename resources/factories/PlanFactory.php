@@ -1,8 +1,8 @@
 <?php
 
 use Faker\Generator;
-use Laravel\PricingPlans\Models\Plan;
-use Laravel\PricingPlans\Period;
+use Veneridze\PricingPlans\Models\Plan;
+use Veneridze\PricingPlans\Period;
 
 $factory->define(Plan::class, function (Generator $faker) {
     return [

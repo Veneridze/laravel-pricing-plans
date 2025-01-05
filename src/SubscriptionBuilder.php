@@ -1,10 +1,10 @@
 <?php
 
-namespace Laravel\PricingPlans;
+namespace Veneridze\PricingPlans;
 
-use Carbon\Carbon;
+use Illuminate\Support\Carbon;
 use Illuminate\Database\Eloquent\Model;
-use Laravel\PricingPlans\Models\Plan;
+use Veneridze\PricingPlans\Models\Plan;
 
 class SubscriptionBuilder
 {
@@ -18,7 +18,7 @@ class SubscriptionBuilder
     /**
      * The plan model that the subscriber is subscribing to.
      *
-     * @var \Laravel\PricingPlans\Models\Plan
+     * @var \Veneridze\PricingPlans\Models\Plan
      */
     protected $plan;
 
@@ -50,7 +50,7 @@ class SubscriptionBuilder
      *
      * @param  \Illuminate\Database\Eloquent\Model $subscriber
      * @param  string $name  Subscription name
-     * @param  \Laravel\PricingPlans\Models\Plan $plan
+     * @param  \Veneridze\PricingPlans\Models\Plan $plan
      */
     public function __construct(Model $subscriber, string $name, Plan $plan)
     {
@@ -88,7 +88,7 @@ class SubscriptionBuilder
      * Create a new subscription.
      *
      * @param  array  $attributes
-     * @return \Laravel\PricingPlans\Models\PlanSubscription
+     * @return \Veneridze\PricingPlans\Models\PlanSubscription
      */
     public function create(array $attributes = [])
     {

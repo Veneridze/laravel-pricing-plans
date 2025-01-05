@@ -1,17 +1,20 @@
 <?php
 
-namespace Laravel\PricingPlans\Tests;
+namespace Veneridze\PricingPlans\Tests;
 
 use Faker\Generator as FakerGenerator;
 use Faker\Factory as FakerFactory;
-use Illuminate\Database\Eloquent\Factory as EloquentFactory;
-use Laravel\PricingPlans\PricingPlansServiceProvider;
-use Laravel\PricingPlans\Tests\Models\User;
-use Orchestra\Database\ConsoleServiceProvider;
-use Orchestra\Testbench\TestCase as Testbench;
+use Illuminate\Database\Eloquent\Factories\Factory as EloquentFactory;
+//use Illuminate\Database\Eloquent\Factory
+use Illuminate\Foundation\Providers\ConsoleSupportServiceProvider;
+use Veneridze\PricingPlans\PricingPlansServiceProvider;
+use Veneridze\PricingPlans\Tests\Models\User;
+use Illuminate\Foundation\Testing\TestCase as Testbench;
 
 class TestCase extends Testbench
 {
+    public function createApplication() {}
+
     /**
      * Setup the test environment.
      *
@@ -22,14 +25,14 @@ class TestCase extends Testbench
         parent::setUp();
 
         // Run Laravel migrations
-        $this->loadLaravelMigrations('testbench');
+        /*$this->loadLaravelMigrations('testbench');
 
         // Run package migrations
         $this->loadMigrationsFrom([
             '--database' => 'testbench',
             '--realpath' => true,
             '--path' => realpath(__DIR__ . '/../resources/migrations')
-        ]);
+        ]);*/
     }
 
     /**
@@ -61,7 +64,7 @@ class TestCase extends Testbench
     public function getPackageProviders($app)
     {
         return [
-            ConsoleServiceProvider::class,
+            ConsoleSupportServiceProvider::class,
             PricingPlansServiceProvider::class,
         ];
     }

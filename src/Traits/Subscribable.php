@@ -1,12 +1,11 @@
 <?php
 
-namespace Laravel\PricingPlans\Models\Concerns;
+namespace Veneridze\PricingPlans\Traits;
 
-use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Config;
-use Laravel\PricingPlans\Models\Plan;
-use Laravel\PricingPlans\SubscriptionBuilder;
-use Laravel\PricingPlans\SubscriptionUsageManager;
+use Veneridze\PricingPlans\Models\Plan;
+use Veneridze\PricingPlans\SubscriptionBuilder;
+use Veneridze\PricingPlans\SubscriptionUsageManager;
 
 trait Subscribable
 {
@@ -27,9 +26,9 @@ trait Subscribable
      * Get a subscription by name.
      *
      * @param  string $name Subscription name
-     * @return \Laravel\PricingPlans\Models\PlanSubscription|null
+     * @return \Veneridze\PricingPlans\Models\PlanSubscription|null
      */
-    public function subscription(string $name = 'default')
+    public function subscription(string $name = 'default'): \Veneridze\PricingPlans\Models\PlanSubscription|null
     {
         if ($this->relationLoaded('subscriptions')) {
             return $this->subscriptions
@@ -50,11 +49,11 @@ trait Subscribable
     /**
      * Check if the user has a given subscription.
      *
-     * @param  string $subscription Subscription name
+     * @param  \Veneridze\PricingPlans\Models\PlanSubscription $subscription Subscription name
      * @param  string|null $planCode
      * @return bool
      */
-    public function subscribed(string $subscription, string $planCode = null): bool
+    public function subscribed($subscription, string $planCode = null): bool
     {
         $planSubscription = $this->subscription($subscription);
 
@@ -73,8 +72,8 @@ trait Subscribable
      * Subscribe user to a new plan.
      *
      * @param string $subscription Subscription name
-     * @param \Laravel\PricingPlans\Models\Plan $plan
-     * @return \Laravel\PricingPlans\SubscriptionBuilder
+     * @param \Veneridze\PricingPlans\Models\Plan $plan
+     * @return \Veneridze\PricingPlans\SubscriptionBuilder
      */
     public function newSubscription(string $subscription, Plan $plan)
     {
@@ -85,7 +84,7 @@ trait Subscribable
      * Get subscription usage manager instance.
      *
      * @param  string $subscription Subscription name
-     * @return \Laravel\PricingPlans\SubscriptionUsageManager
+     * @return \Veneridze\PricingPlans\SubscriptionUsageManager
      */
     public function subscriptionUsage(string $subscription)
     {
