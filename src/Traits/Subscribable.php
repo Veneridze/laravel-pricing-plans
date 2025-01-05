@@ -49,11 +49,11 @@ trait Subscribable
     /**
      * Check if the user has a given subscription.
      *
-     * @param  \Veneridze\PricingPlans\Models\PlanSubscription $subscription Subscription name
+     * @param  string $subscription Subscription name
      * @param  string|null $planCode
      * @return bool
      */
-    public function subscribed($subscription, string $planCode = null): bool
+    public function subscribed(string $subscription = 'default', string $planCode = null): bool
     {
         $planSubscription = $this->subscription($subscription);
 
@@ -62,7 +62,7 @@ trait Subscribable
         }
 
         if (is_null($planCode) || $planCode == $planSubscription->plan->code) {
-            return $subscription->isActive();
+            return $planSubscription->isActive();
         }
 
         return false;
@@ -75,7 +75,7 @@ trait Subscribable
      * @param \Veneridze\PricingPlans\Models\Plan $plan
      * @return \Veneridze\PricingPlans\SubscriptionBuilder
      */
-    public function newSubscription(string $subscription, Plan $plan)
+    public function newSubscription(Plan $plan, string $subscription = 'default')
     {
         return new SubscriptionBuilder($this, $subscription, $plan);
     }
@@ -86,7 +86,7 @@ trait Subscribable
      * @param  string $subscription Subscription name
      * @return \Veneridze\PricingPlans\SubscriptionUsageManager
      */
-    public function subscriptionUsage(string $subscription)
+    public function subscriptionUsage(string $subscription = 'default')
     {
         return new SubscriptionUsageManager($this->subscription($subscription));
     }
