@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Illuminate\Support\Facades\Event;
 use InvalidArgumentException;
 use Veneridze\PricingPlans\Events\SubscriptionRenewed;
@@ -124,12 +126,24 @@ class PlanSubscription extends Model
         $this->setTable(Config::get('plans.tables.plan_subscriptions'));
     }
 
+    public function limits(): array
+    {
+        return $this->usage->map(function (PlanSubscriptionUsage $usage) {
+            return [
+                'code' => $usage->feature_code,
+                'name' => $usage->feature->name,
+                'available' => $this->plan->features()->whereBelongsTo(Feature::where('code', $usage->feature_code)->firstOrFail())->get()->value, //$usage->feature->,
+                'used' => $usage->used
+            ];
+        })->all();
+    }
+
     /**
      * Get subscriber.
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function subscriber()
+    public function subscriber(): MorphTo
     {
         return $this->morphTo();
     }
@@ -139,7 +153,7 @@ class PlanSubscription extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function usage()
+    public function usage(): HasMany
     {
         return $this->hasMany(
             Config::get('plans.models.PlanSubscriptionUsage'),

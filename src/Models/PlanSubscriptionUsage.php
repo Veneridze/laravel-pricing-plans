@@ -4,6 +4,7 @@ namespace Veneridze\PricingPlans\Models;
 
 use Illuminate\Support\Carbon;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Facades\Config;
 
 /**
@@ -58,7 +59,7 @@ class PlanSubscriptionUsage extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function feature()
+    public function feature(): BelongsTo
     {
         return $this->belongsTo(
             Config::get('plans.models.Feature'),
@@ -72,7 +73,7 @@ class PlanSubscriptionUsage extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function subscription()
+    public function subscription(): BelongsTo
     {
         return $this->belongsTo(
             Config::get('plans.models.PlanSubscription'),
