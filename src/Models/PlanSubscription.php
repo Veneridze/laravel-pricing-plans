@@ -132,7 +132,7 @@ class PlanSubscription extends Model
             return [
                 'code' => $usage->feature_code,
                 'name' => $usage->feature->name,
-                'available' => $this->plan->features()->whereBelongsTo(Feature::where('code', $usage->feature_code)->firstOrFail())->get()->value, //$usage->feature->,
+                'available' => $this->plan->features()->where('feature_id', Feature::where('code', $usage->feature_code)->firstOrFail())->get()->value, //$usage->feature->,
                 'used' => $usage->used
             ];
         })->all();

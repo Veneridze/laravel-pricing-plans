@@ -4,6 +4,8 @@ namespace Veneridze\PricingPlans\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Lang;
 use Veneridze\PricingPlans\Period;
@@ -94,7 +96,7 @@ class Plan extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
-    public function features()
+    public function features(): BelongsToMany
     {
         return $this
             ->belongsToMany(
@@ -113,7 +115,7 @@ class Plan extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function subscriptions()
+    public function subscriptions(): HasMany
     {
         return $this->hasMany(
             Config::get('plans.models.PlanSubscription'),
