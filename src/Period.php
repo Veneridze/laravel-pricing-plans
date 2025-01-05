@@ -68,7 +68,7 @@ class Period
     public function __construct(string $intervalUnit = 'month', int $intervalCount = 1, $startAt = null)
     {
         if ($startAt instanceof DateTime) {
-            $this->startAt = Carbon::instance($startAt);
+            $this->startAt = Carbon::parse($startAt);
         } elseif (is_int($startAt)) {
             $this->startAt = Carbon::createFromTimestamp($startAt);
         } elseif (empty($startAt)) {

@@ -191,7 +191,7 @@ class PlanSubscription extends Model
     public function onTrial(): bool
     {
         if (!is_null($trialEndsAt = $this->trial_ends_at)) {
-            return Carbon::now()->lt(Carbon::instance($trialEndsAt));
+            return Carbon::now()->lt(Carbon::parse($trialEndsAt));
         }
 
         return false;
@@ -224,7 +224,7 @@ class PlanSubscription extends Model
      */
     public function isEnded(): bool
     {
-        $endsAt = Carbon::instance($this->ends_at);
+        $endsAt = Carbon::parse($this->ends_at);
 
         return Carbon::now()->gte($endsAt);
     }
