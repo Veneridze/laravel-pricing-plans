@@ -18,7 +18,7 @@ class PricingPlansServiceProvider extends PackageServiceProvider
             ])
             ->hasAssets()
             ->hasTranslations()
-            ->hasConfigFile()
+            ->hasConfigFile('plans')
             ->publishesServiceProvider('PricingPlansServiceProvider')
             ->hasInstallCommand(function (InstallCommand $command) {
                 $command
