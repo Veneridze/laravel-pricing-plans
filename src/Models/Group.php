@@ -2,20 +2,9 @@
 
 namespace Veneridze\PricingPlans\Models;
 
-use Illuminate\Support\Carbon;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Config;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Event;
-use InvalidArgumentException;
-use Veneridze\PricingPlans\Events\SubscriptionRenewed;
-use Veneridze\PricingPlans\Period;
-use Veneridze\PricingPlans\SubscriptionAbility;
-use Veneridze\PricingPlans\SubscriptionUsageManager;
-use Veneridze\PricingPlans\Models\BelongsToPlanModel;
-use LogicException;
 
 /**
  * Class Group

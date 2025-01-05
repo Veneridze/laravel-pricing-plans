@@ -1,6 +1,6 @@
 <?php
 
-namespace Veneridze\PricingPlans\Models\Concerns;
+namespace Veneridze\PricingPlans\Traits;
 
 use Illuminate\Support\Facades\Config;
 

@@ -16,8 +16,8 @@ use Veneridze\PricingPlans\Events\SubscriptionPlanChanged;
 use Veneridze\PricingPlans\Period;
 use Veneridze\PricingPlans\SubscriptionAbility;
 use Veneridze\PricingPlans\SubscriptionUsageManager;
-use Veneridze\PricingPlans\Models\BelongsToPlanModel;
 use LogicException;
+use Veneridze\PricingPlans\Traits\BelongsToPlanModel;
 
 /**
  * Class PlanSubscription

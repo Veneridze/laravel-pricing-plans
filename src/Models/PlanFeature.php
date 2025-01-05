@@ -4,7 +4,7 @@ namespace Veneridze\PricingPlans\Models;
 
 use Illuminate\Database\Eloquent\Relations\Pivot;
 use Illuminate\Support\Facades\Config;
-use Veneridze\PricingPlans\Models\BelongsToPlanModel;
+use Veneridze\PricingPlans\Traits\BelongsToPlanModel;
 
 /**
  * Class PlanFeature
