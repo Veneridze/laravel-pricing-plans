@@ -21,7 +21,7 @@ interface Subscriber
      * @param  string|null $planCode
      * @return bool
      */
-    public function subscribed(string $subscription, string $planCode = null): bool;
+    public function subscribed(string $subscription = 'default', string $planCode = null): bool;
 
     /**
      * Subscribe user to a new plan.
@@ -30,7 +30,7 @@ interface Subscriber
      * @param \Veneridze\PricingPlans\Models\Plan $plan
      * @return \Veneridze\PricingPlans\SubscriptionBuilder
      */
-    public function newSubscription(string $subscription, Plan $plan);
+    public function newSubscription(Plan $plan, string $subscription = 'default');
 
     /**
      * Get subscription usage manager instance.
@@ -38,5 +38,5 @@ interface Subscriber
      * @param string $subscription Subscription name
      * @return \Veneridze\PricingPlans\SubscriptionUsageManager
      */
-    public function subscriptionUsage(string $subscription);
+    public function subscriptionUsage(string $subscription = 'default');
 }
