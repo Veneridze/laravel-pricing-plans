@@ -107,7 +107,7 @@ $ php artisan migrate
 
 ### Contract and Traits
 
-Add `Veneridze\PricingPlans\Contacts\Subscriber` contract and `Veneridze\PricingPlans\Models\Concerns\Subscribable` trait to
+Add `Veneridze\PricingPlans\Contacts\Subscriber` contract and `Veneridze\PricingPlans\Models\Subscribable` trait to
 your subscriber model (Eg. `User`).
 
 See the following example:
@@ -119,7 +119,7 @@ namespace App\Models;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Veneridze\PricingPlans\Contracts\Subscriber;
-use Veneridze\PricingPlans\Models\Concerns\Subscribable;
+use Veneridze\PricingPlans\Models\Subscribable;
 
 class User extends Authenticatable implements Subscriber
 {
@@ -211,7 +211,7 @@ This model is relation model object between plan and subscriber
 
 This model is object for counting usage feature
 
-For more details take a look to each model and the `Veneridze\PricingPlans\Models\Concerns\Subscribable` trait.
+For more details take a look to each model and the `Veneridze\PricingPlans\Models\Subscribable` trait.
 
 ## Events
 
