@@ -95,7 +95,7 @@ class Period
      *
      * @return \Illuminate\Support\Carbon
      */
-    public function getStartAt()
+    public function getStartAt(): Carbon
     {
         return $this->startAt;
     }
@@ -105,7 +105,7 @@ class Period
      *
      * @return \Illuminate\Support\Carbon
      */
-    public function getEndAt()
+    public function getEndAt(): Carbon
     {
         return $this->endAt;
     }
@@ -125,7 +125,7 @@ class Period
      *
      * @return int
      */
-    public function getIntervalCount()
+    public function getIntervalCount(): int
     {
         return $this->intervalCount;
     }

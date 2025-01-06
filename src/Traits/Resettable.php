@@ -2,6 +2,7 @@
 
 namespace Veneridze\PricingPlans\Traits;
 
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Lang;
 use Veneridze\PricingPlans\Period;
 
@@ -24,7 +25,7 @@ trait Resettable
      *
      * @return string
      */
-    public function getIntervalDescriptionAttribute()
+    public function getIntervalDescriptionAttribute(): string
     {
         return Lang::choice('plans::messages.interval_description.' . $this->interval_unit, $this->interval_count);
     }
@@ -41,7 +42,7 @@ trait Resettable
      * @param string|null|int|\DateTime $startedAt
      * @return \Illuminate\Support\Carbon
      */
-    public function getResetTime($startedAt = null)
+    public function getResetTime($startedAt = null): Carbon
     {
         return (new Period($this->interval_unit, $this->interval_count, $startedAt))->getEndAt();
     }

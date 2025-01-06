@@ -2,6 +2,7 @@
 
 namespace Veneridze\PricingPlans\Traits;
 
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Support\Facades\Config;
 use Veneridze\PricingPlans\Models\Plan;
 use Veneridze\PricingPlans\SubscriptionBuilder;
@@ -14,7 +15,7 @@ trait Subscribable
      *
      * @return \Illuminate\Database\Eloquent\Relations\MorphMany
      */
-    public function subscriptions()
+    public function subscriptions(): MorphMany
     {
         return $this->morphMany(
             Config::get('plans.models.PlanSubscription'),
@@ -53,7 +54,7 @@ trait Subscribable
      * @param  string|null $planCode
      * @return bool
      */
-    public function subscribed(string $subscription = 'default', string $planCode = null): bool
+    public function subscribed(Plan $plan = null, string $subscription = 'default'): bool
     {
         $planSubscription = $this->subscription($subscription);
 
@@ -61,7 +62,7 @@ trait Subscribable
             return false;
         }
 
-        if (is_null($planCode) || $planCode == $planSubscription->plan->code) {
+        if (is_null($plan->code) || $plan->code == $planSubscription->plan->code) {
             return $planSubscription->isActive();
         }
 

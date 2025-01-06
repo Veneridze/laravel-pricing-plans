@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Illuminate\Support\Facades\Event;
@@ -128,14 +129,17 @@ class PlanSubscription extends Model
 
     public function limits(): array
     {
-        return $this->usage->map(function (PlanSubscriptionUsage $usage) {
-            return [
-                'code' => $usage->feature_code,
-                'name' => $usage->feature->name,
-                'available' => (int)$this->plan->features()->where('feature_id', Feature::where('code', $usage->feature_code)->firstOrFail()->id)->first()->pivot->value, //$usage->feature->,
-                'used' => $usage->used
-            ];
-        })->all();
+        return $this->plan->features
+            ->map(function (Feature $feat) {
+                $usage = $this->usage()->where('feature_code', $feat->code)->first();
+                return [
+                    'code' => $feat->code,
+                    'name' => $feat->name,
+                    'available' => (int)$feat->pivot->value, //$usage->feature->,
+                    'used' => $usage ? $usage->used : 0
+                ];
+            })
+            ->all();
     }
 
     /**
@@ -342,6 +346,11 @@ class PlanSubscription extends Model
         Event::dispatch(new SubscriptionRenewed($this));
 
         return $this;
+    }
+
+    public function plan(): BelongsTo
+    {
+        return $this->belongsTo(Plan::class);
     }
 
     /**

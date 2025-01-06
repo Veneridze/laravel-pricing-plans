@@ -21,7 +21,7 @@ interface Subscriber
      * @param  string|null $planCode
      * @return bool
      */
-    public function subscribed(string $subscription = 'default', string $planCode = null): bool;
+    public function subscribed(Plan $plan = null, string $subscription = 'default'): bool;
 
     /**
      * Subscribe user to a new plan.
